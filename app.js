@@ -1,11 +1,9 @@
 const express = require("express");
-const bodyParser = require("body-parser");
 const { db, collection, addDoc, getDocs } = require("./firebase");
 
 const app = express();
 const port = 3000;
 
-app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
@@ -33,7 +31,7 @@ app.get("/", (req, res) => {
 
 app.post("/submit", async (req, res) => {
     const { name, email } = req.body;
-    const docRef = await addDoc(collection(db, "Form inputs"), { name, email });
+    await addDoc(collection(db, "Form inputs"), { name, email });
     res.send(`<h1>Data saved successfully!</h1><a href='/'>Go back</a>`);
 });
 
