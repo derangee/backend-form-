@@ -11,6 +11,7 @@ const collectionName = "formInputs";
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 let db;
 MongoClient.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((client) => {
@@ -32,7 +33,7 @@ app.get("/", (req, res) => {
       <title>Simple Form</title>
     </head>
     <body>
-      <h1>Submit Your Data</h1>
+      <h1>Simple Form</h1>
       <form action="/submit" method="POST">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
